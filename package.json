@@ -8,11 +8,13 @@
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "server": "json-server --watch db.json --port 4000"
+    "server": "json-server --watch db.json --port 4000",
+    "newcomp": "mkdir components && touch components/components.jsx && touch components/styles.module.css && echo import s from './styles.module.css'; > components/components.jsx"	
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
