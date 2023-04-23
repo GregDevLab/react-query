@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import s from './styles.module.css';
 
 const Heroes = ({ hero }) => {
@@ -7,7 +8,10 @@ const Heroes = ({ hero }) => {
             <td>#{hero.id}</td>
             <td>{hero.name}</td>
             <td>{hero.alterEgo}</td>
-        </tr>
+            <td>
+                <Link to={`/rq-heroes/${hero.id}`}>Voir</Link>
+            </td>
+        </tr >
     )
 }
 

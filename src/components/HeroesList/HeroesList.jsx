@@ -9,6 +9,7 @@ const HeroesList = ({ heroes }) => {
                     <th>Id</th>
                     <th>Nom</th>
                     <th>Alter ego</th>
+                    <th>Voir</th>
                 </tr>
             </thead>
             <tbody>
