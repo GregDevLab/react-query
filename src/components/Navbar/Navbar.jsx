@@ -18,6 +18,9 @@ const Navbar = () => {
                 <li>
                     <NavLink to='/rq-heroes' className={activeLink}>RQ | Super-heros</NavLink>
                 </li>
+                <li>
+                    <NavLink to='/rq-parallel' className={activeLink}>RQ | Parallel</NavLink>
+                </li>
             </ul>
         </nav>
     )
