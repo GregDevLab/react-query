@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import HeroesList from '../../components/HeroesList/HeroesList';
 import { fetchHeroes } from '../../api/heroes.js';
+import { useState } from 'react';
 const RQSuperHeroes = () => {
-
+    const [enabled, setEnabled] = useState(false)
     const queryOptions = {
         // staleTime: 5000, // determine combien de temps les données sont considérées comme fraîches
         // cacheTime: 5000, // determine combien de temps les données sont conservées dans le cache, même si elles sont obsolètes
@@ -18,17 +19,21 @@ const RQSuperHeroes = () => {
         onSettled: () => console.log('settled'), // determine une fonction à appeler lorsque la requête est terminée, que ce soit avec succès ou en échec
         // useErrorBoundary: true, // determine si les erreurs doivent être capturées par un composant ErrorBoundary
         // suspense: true, // determine si le composant doit être suspendu pendant le chargement de la requête
-        enabled: true// determine si la requête doit être exécutée
+        enabled // determine si la requête doit être exécutée
     }
 
-    const { isLoading, isError, data: heroes, error } = useQuery(['heroes'], fetchHeroes, queryOptions)
+    const { isLoading, isFetching, isError, data: heroes, error, refetch } = useQuery(['heroes'], fetchHeroes, queryOptions)
 
-    if (isLoading) return <div>Chargement en cours...</div>
+    if (isLoading || isFetching) return (<div>
+        <h1>Chargement en cours...</h1>
+        <button onClick={() => setEnabled(true)}>Charger</button>
+    </div>)
     if (isError) return <div>{error.message}</div>
 
     return (
         <div>
             <HeroesList heroes={heroes.data} />
+            <button onClick={refetch}>Rafraîchir</button>
         </div>
     )
 }
