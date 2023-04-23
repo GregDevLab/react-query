@@ -1,7 +1,6 @@
-import axios from 'axios';
-import s from './styles.module.css';
 import { useEffect, useState } from 'react';
 import HeroesList from '../../components/HeroesList/HeroesList';
+import { fetchHeroes } from '../../api/heroes.js';
 
 const SuperHeroes = () => {
     const [heroes, setHeroes] = useState([])
@@ -10,7 +9,7 @@ const SuperHeroes = () => {
     const [error, setError] = useState(false)
 
     const getHeroes = () => {
-        axios.get('http://localhost:4000/superheroes')
+        fetchHeroes()
             .then(response => response.data)
             .then(data => setHeroes(data))
             .catch(error => {
@@ -21,9 +20,7 @@ const SuperHeroes = () => {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            getHeroes()
-        }, 2000)
+        getHeroes()
     }, [])
 
     if (isLoading) return <div>Chargement en cours...</div>
