@@ -3,6 +3,7 @@ import './App.css'
 import Routers from './Routers'
 import Navbar from './components/Navbar/Navbar'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 function App() {
   const queryClient = new QueryClient()
@@ -15,8 +16,10 @@ function App() {
           <Routers />
         </div>
       </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   )
 }
 
 export default App
+

@@ -3,7 +3,7 @@ import HeroesList from '../../components/HeroesList/HeroesList';
 import { fetchHeroes } from '../../api/heroes.js';
 const RQSuperHeroes = () => {
 
-    const { isLoading, isError, data: heroes, error } = useQuery({ queryKey: ['heroes'], queryFn: fetchHeroes })
+    const { isLoading, isError, data: heroes, error } = useQuery(['heroes'], fetchHeroes)
 
     if (isLoading) return <div>Chargement en cours...</div>
     if (isError) return <div>{error.message}</div>
