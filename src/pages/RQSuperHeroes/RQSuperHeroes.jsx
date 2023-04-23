@@ -1,19 +1,17 @@
-import { useQuery } from '@tanstack/react-query'
 import HeroesList from '../../components/HeroesList/HeroesList';
-import { fetchHeroes } from '../../api/heroes.js';
+import { useHeroesData } from '../../hooks/useHeroesData';
 
 const RQSuperHeroes = () => {
 
-    const transformData = (heroes) => {
-        heroes.data.map((hero) => hero.name = hero.name.toUpperCase())
-        return heroes.data
+    const onSucess = (data) => {
+        console.log('onSuccess', data)
     }
 
-    const queryOptions = {
-        select: transformData // determine une fonction pour sélectionner les données à retourner 
+    const onError = (error) => {
+        console.log('onError', error)
     }
 
-    const { isLoading, isFetching, isError, data: heroes, error } = useQuery(['heroes'], fetchHeroes, queryOptions)
+    const { isLoading, isFetching, isError, data: heroes, error } = useHeroesData(onSucess, onError)
 
     if (isLoading || isFetching) return <h1>Chargement en cours...</h1>
 
